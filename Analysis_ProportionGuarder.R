@@ -31,6 +31,9 @@ ggplot(newdata, aes(x=Year,y=proportion,colour=SiteType))+
   geom_smooth()
 
 
+#relevel factor to make high contamination the reference level
+newdata <- within(newdata, SiteType <- relevel(SiteType, ref = "More Contaminated"))
+
 #assume binomial error distribution, weights for total # of males
 
 m2.glmer <- glmmTMB(proportion ~ Year*SiteType + (1|Site), 
