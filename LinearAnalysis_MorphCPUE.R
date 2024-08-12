@@ -117,8 +117,9 @@ check_model(HSI_lmer)
 hist(resid(HSI_lmer))
 summary(HSI_lmer)
 
-#convert liver mass of 0 to 0.001 (the smallest weight our scale
-#could measure)
+#Sigal also wanted a model where we include the 82 fish that were excluded b/c liver mass of 0
+#and instead convert them to liver mass values of 0.001 (the smallest weight our scale
+#could measure, so doing that below)
 
 rg_morph2004to2022$Liver_test <- ifelse(rg_morph2004to2022$Liver_g < 0.00001, 0.001, rg_morph2004to2022$Liver_g)
 rg_morph2004to2022$HSI_test <- rg_morph2004to2022$Liver_test/rg_morph2004to2022$Mass_g

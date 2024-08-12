@@ -30,7 +30,6 @@ ggplot(newdata, aes(x=Year,y=proportion,colour=SiteType))+
   geom_point(aes(size=total),position="jitter")+
   geom_smooth()
 
-
 #assume binomial error distribution, weights for total # of males
 
 m2.glmer <- glmmTMB(proportion ~ Year*SiteType + (1|Site), 
@@ -42,4 +41,3 @@ qqline(residuals(m2.glmer,"pearson"), col = "darkgreen", lwd = 2)
 summary(m2.glmer)
 
 ggplot(newdata,aes(x=Year,y=resid(m2.glmer),colour=SiteType))+geom_point()+geom_smooth()
-
